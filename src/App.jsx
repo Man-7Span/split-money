@@ -15,7 +15,7 @@ import PrivateRoute from "./component/auth/privateroute";
 import GroupInfo from "./component/HeroSection/groupinfo";
 import AddExpense from "./component/HeroSection/addexpense";
 import Settings from "./component/HeroSection/settings";
-import GroupInvite from "./component/pages/groupinvite";
+import GroupInvite from './component/pages/invitemember'
 import InviteMember from "./component/pages/invitemember";
 import PublicRoute from "./component/auth/publicroute";
 
@@ -48,7 +48,7 @@ function App() {
           }
         />
         {/* <Route path="*" element={<PageNotFound />} /> */}
-        <Route path='/group-invite/:token' element={<GroupInvite />}></Route>
+        <Route path='/invite-member/:token' element={<GroupInvite />}></Route>
 
         <Route element={<PrivateRoute />}>
           <Route path="*" element={<Navigate to="/" />}></Route>
@@ -61,7 +61,7 @@ function App() {
           <Route path="/creategroup" element={<CreateGroup />} />
           <Route path="/" element={<Home />}></Route>
           <Route path="/accounts" element={<Account />} />
-          <Route path="/group-invite/:token" element={<InviteMember />}></Route>
+  {/*         <Route path="/invite-member/:token" element={<InviteMember />}></Route> */}
           <Route path="/friends" element={<Friends />} />
           {/* <Route path="/addexpense" element={<AddExpense />} /> */}
           {/* <Route path="/settings" element={<Settings />} /> */}
