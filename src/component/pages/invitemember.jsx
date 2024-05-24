@@ -1,9 +1,9 @@
- /* eslint-disable no-undef */
 
 // import axios from 'axios';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import VerifyLoaderComponent from '../utils/verifyloadercomponent'
 import axios from 'axios';
 const GroupInvite = () => {
     const { token } = useParams()
@@ -34,6 +34,7 @@ const GroupInvite = () => {
                 navigate('/signup');
             } else if (response.status === 200) {
                 console.log(response)
+
                 /* console.log('Invitation sent successfully'); */
             } else {
                 console.log('Error while sending invitation');
@@ -47,10 +48,9 @@ const GroupInvite = () => {
 
     return (
         <>
-            <div>GroupInvite</div>
-            <p>{token}</p>
+            < VerifyLoaderComponent />
         </>
     )
 }
 
-export default GroupInvite; 
+export default GroupInvite;

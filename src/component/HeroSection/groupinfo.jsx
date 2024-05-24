@@ -2,7 +2,7 @@ import { useNavigate, useLocation, useParams, Link } from "react-router-dom";
 import Modal from "../../component/modal/modal";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { ArrowLeft, Settings, UsersRound, UserRound, CircleUserRound, ReceiptText, UserRoundPlus } from 'lucide-react';
+import { ArrowLeft, Settings, UsersRound, UserRound, CircleUserRound, ReceiptText } from 'lucide-react';
 
 const GroupInfo = () => {
   const navigate = useNavigate();
@@ -46,7 +46,7 @@ const GroupInfo = () => {
   }, [id]);
 
   return (
-    <div className='h-svh bg-primaryColor flex flex-col'>
+    <div className='h-screen bg-primaryColor flex flex-col'>
       <div className="flex w-full justify-between px-3 pt-3">
         <button className='flex items-center flex-row-reverse gap-2' onClick={() => navigate(-1)}>
           <h2 className='text-white text-base font-satoshi'>back</h2>
@@ -68,20 +68,7 @@ const GroupInfo = () => {
         </div>
       </div>
 
-      <div className="flex justify-between items-center px-3 my-3">
-        <Link to={`/group/${id}/addexpense`}>
-          <button className='text-black w-40 hover:border-4 hover:border-textColor font-satoshi bg-buttonColor font-bold gap-1 py-2 flex justify-center items-center rounded-full'>
-            <ReceiptText className='text-black' />Add expense
-          </button>
-        </Link>
-
-        <button className="flex gap-1 bg-white hover:border-4 hover:border-textColor backdrop-blur-sm rounded-2xl py-2 shadow-lg px-4" onClick={() => setModals(true)}>
-          <UserRoundPlus className='text-black' />
-          <h3 className="font-satoshi text-lg flex items-center font-bold bg-white text-black">Add group members</h3>
-        </button>
-      </div>
-
-      <div className="flex-1 overflow-y-auto px-3 py-4">
+      <div className="flex-1 overflow-y-auto px-3 py-4 mb-20"> {/* Adjusted for spacing */}
         {expenses.map((expense) => {
           const date = new Date(expense.date);
           const month = date.toLocaleString('default', { month: 'short' });
@@ -89,26 +76,32 @@ const GroupInfo = () => {
           const day = date.getDate();
 
           return (
-            <div key={expense.id} className="my-4 p-4 bg-white rounded-lg shadow-lg">
+            <div key={expense.id} className="my-4 p-4 bg-stone-700 rounded-lg shadow-lg">
               <div className="flex justify-between items-center mb-2">
                 <div>
-                  <span className="font-bold text-lg">{month} {year}</span>
+                  <span className="font-bold font-satoshi text-lg text-white">{month} {year}</span>
                 </div>
-                <div className="bg-gray-200 p-2 rounded-lg">
-                  <span className="text-sm">{expense.description}</span>
+                <div className="bg-stone-600 p-2 rounded-lg">
+                  <span className="text-sm text-white font-satoshi">{expense.description}</span>
                 </div>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-500">{month} {day}</span>
-                <div className="bg-gray-100 p-2 rounded-lg">
-                  <span className="text-sm">You paid</span>
-                  <span className="font-bold text-lg ml-2">₹{expense.amount}</span>
+                <span className="text-sm font-satoshi  font-bold text-white">{month} {day}</span>
+                <div className="bg-stone-500 p-2 rounded-lg">
+                  <span className="text-sm text-white font-satoshi">You paid</span>
+                  <span className="font-bold text-black text-lg ml-2 font-sans">₹{expense.amount}</span>
                 </div>
               </div>
             </div>
           );
         })}
       </div>
+
+      <Link to={`/group/${id}/addexpense`}>
+        <button className='fixed bottom-20 right-5 text-black w-40 hover:border-4 hover:border-textColor font-satoshi bg-buttonColor font-bold gap-1 py-2 flex justify-center items-center rounded-full'>
+          <ReceiptText className='text-black' />Add expense
+        </button>
+      </Link>
 
       <div className="flex justify-around w-full fixed bottom-0 bg-primaryColor p-2">
         <button className="flex flex-col justify-center items-center" onClick={() => navigate("/")}>
